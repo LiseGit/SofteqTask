@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="SofteqTaskAndroid.Pages.Task1Page">
+    <ContentPage.Content>
+        <StackLayout Padding="30" Spacing="10">
+            <Entry Text="{Binding Input}"/>
+            <Button Text="Calculate" Command="{Binding CalculateCommand}"/>
+            <!--<Label Text="f(x):"
+                HorizontalOptions="CenterAndExpand" />-->
+            <StackLayout Padding="10">
+                <CollectionView ItemsSource="{Binding ResultList}" Header="Value f(x):" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
