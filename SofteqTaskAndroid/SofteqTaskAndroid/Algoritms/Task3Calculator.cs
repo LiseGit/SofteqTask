@@ -13,7 +13,7 @@ namespace SofteqTaskAndroid.Algoritms
         private int a, b, n, min, max, smin, smax = 0, o;
         private bool CheckInput(string input)
         {
-            string pattern = @"^([2-9]\s+){2}([2-9][0-9]|1[1-9]\s*)$";
+            string pattern = @"^\s*([2-9]\s+){2}([2-9][0-9]|1[1-9]\s*)$";
             if (Regex.IsMatch(input, pattern))
             {
                 String[] words = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);

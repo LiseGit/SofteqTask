@@ -13,7 +13,7 @@ namespace SofteqTaskAndroid.Algoritms
     {
         private bool CheckInput(string input)
         {
-            string pattern = @"^((((-?\d+)(.\d{1,3})))|([1-9]\d*)|0)$";
+            string pattern = @"^\s*((((-?\d+)(.\d{1,3})))|([1-9]\d*)|0)\s*$";
             if (Regex.IsMatch(input, pattern))
             {
                 return true;

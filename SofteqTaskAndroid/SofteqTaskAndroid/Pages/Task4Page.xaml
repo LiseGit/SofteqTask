@@ -6,10 +6,10 @@
              mc:Ignorable="d"
              x:Class="SofteqTaskAndroid.Pages.Task4Page">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="4"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="30" Spacing="10">
+            <Entry Text="{Binding Input}"/>
+            <Button Text="Calculate" Command="{Binding CalculateCommand}"/>
+            <Label Text="{Binding Result}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
