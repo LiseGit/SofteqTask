@@ -15,7 +15,9 @@ namespace SofteqTaskAndroid.Algoritms
 
         bool CheckInput(string input)
         {
-            string pattern = @"^(\s*(4|6|8|10)\s+([4-9]|1[0-9]|20)\s*\n+)((\s*(([1-9](\d){0,2})|([1-2](\d){3})|3000)\s*\n+))+(\s*(([1-9](\d){0,2})|([1-2](\d){3})|3000)\s*\n*)\s*";
+            string pattern = @"^(\s*(4|6|8|10)\s+([4-9]|1[0-9]|20)\s*\n+)"
+                + @"((\s*(([1-9](\d){0,2})|([1-2](\d){3})|3000)\s*\n+))+"
+                + @"(\s*(([1-9](\d){0,2})|([1-2](\d){3})|3000)\s*\n*)\s*";
             if (Regex.IsMatch(input, pattern))
             {
                 string[] words = input.Split(new char[] { ' ', '\n'}, StringSplitOptions.RemoveEmptyEntries);

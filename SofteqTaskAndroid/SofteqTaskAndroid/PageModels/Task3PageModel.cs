@@ -1,10 +1,5 @@
-﻿using FreshMvvm;
-using SofteqTaskAndroid.Algoritms;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text;
+﻿using SofteqTaskAndroid.Algoritms;
+using SofteqTaskAndroid.Models;
 using System.Windows.Input;
 using Xamarin.Forms;
 /*
@@ -13,7 +8,7 @@ using Xamarin.Forms;
 * */
 namespace SofteqTaskAndroid.PageModels
 {
-    class Task3PageModel : FreshBasePageModel, INotifyPropertyChanged
+    class Task3PageModel : ChangebleBasePageModel
     {
         private string _result;
         public string Input { get; set; }
@@ -30,12 +25,6 @@ namespace SofteqTaskAndroid.PageModels
         {
             Task3Calculator calculator = new Task3Calculator();
             Result = calculator.getCalculatedResult(Input);
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
