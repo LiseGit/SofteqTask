@@ -6,10 +6,15 @@
              mc:Ignorable="d"
              x:Class="SofteqTaskAndroid.Pages.Task2Page">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="2"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="30" Spacing="10">
+            <Label Text="4&lt;=N&lt;=10, N-чётное, N&lt;=M&lt;=20,  a[N] , 0&lt;a[i]&lt;=3000"/>
+            <Editor Text="{Binding Input}">
+                <Editor.Placeholder>
+                    N M &#10; a[0]&#10;a[1]&#10;...&#10;a[N-1]&#10;a[N]
+                </Editor.Placeholder>
+            </Editor>
+            <Button Text="Calculate" Command="{Binding CalculateCommand}"/>
+            <Label Text="{Binding Result}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
