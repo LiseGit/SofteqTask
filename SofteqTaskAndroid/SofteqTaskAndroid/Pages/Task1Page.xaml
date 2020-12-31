@@ -7,12 +7,11 @@
              x:Class="SofteqTaskAndroid.Pages.Task1Page">
     <ContentPage.Content>
         <StackLayout Padding="30" Spacing="10">
-            <Entry Text="{Binding Input}"/>
+            <Label Text="X &#8712; R"/>
+            <Entry Text="{Binding Input}" Placeholder="x1 x2 ..."/>
             <Button Text="Calculate" Command="{Binding CalculateCommand}"/>
-            <!--<Label Text="f(x):"
-                HorizontalOptions="CenterAndExpand" />-->
-            <StackLayout Padding="10">
-                <CollectionView ItemsSource="{Binding ResultList}" Header="Value f(x):" />
+            <StackLayout Padding="10" Spacing="10">
+                <CollectionView ItemsSource="{Binding ResultList}" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

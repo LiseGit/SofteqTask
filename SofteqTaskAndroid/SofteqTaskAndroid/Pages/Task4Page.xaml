@@ -7,7 +7,8 @@
              x:Class="SofteqTaskAndroid.Pages.Task4Page">
     <ContentPage.Content>
         <StackLayout Padding="30" Spacing="10">
-            <Entry Text="{Binding Input}"/>
+            <Label Text="1 &lt;= N, M &lt;= 1000"/>
+            <Entry Text="{Binding Input}" Placeholder="N M"/>
             <Button Text="Calculate" Command="{Binding CalculateCommand}"/>
             <Label Text="{Binding Result}"/>
         </StackLayout>
