@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using SofteqTaskAndroid.PageModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 /*
@@ -12,7 +7,6 @@ using Xamarin.Forms.Xaml;
  * */
 namespace SofteqTaskAndroid.Pages
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Task4Page : ContentPage
     {
         public Task4Page()

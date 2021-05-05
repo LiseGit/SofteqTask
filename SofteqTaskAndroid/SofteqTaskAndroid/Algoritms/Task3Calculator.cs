@@ -1,25 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
+
 /*
 * Created by LiseGit at 30.12.2020.
 * 
 * */
+
 namespace SofteqTaskAndroid.Algoritms
 {
-    class Task3Calculator
+    class Task3Calculator : ITaskCalculator
     {
-        private int a, b, n, min, max, smin, smax = 0, o;
-        private bool CheckInput(string input)
+        private int _a;
+        private int _b;
+        private int _n;
+        private int _min;
+        private int _max;
+        private int _smin;
+        private int _smax = 0;
+        private int _o;
+
+        public bool CheckInput(string input)
         {
             string pattern = @"^\s*([2-9]\s+){2}([2-9][0-9]|1[1-9]\s*)$";
             if (Regex.IsMatch(input, pattern))
             {
-                String[] words = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                a = Convert.ToInt16(words[0]);
-                b = Convert.ToInt16(words[1]);
-                n = Convert.ToInt16(words[2]);
+                string[] words = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                _a = Convert.ToInt16(words[0]);
+                _b = Convert.ToInt16(words[1]);
+                _n = Convert.ToInt16(words[2]);
                 return true;
             }
             else
@@ -27,55 +35,58 @@ namespace SofteqTaskAndroid.Algoritms
                 return false;
             }
         }
-        private void setMaxAndMin(int x1, int x2)
-        {
-            smin = n / x1;
-            o = n % x1;
-            min = x1;
-            max = x2;
-        }
-        private long calculateResult()
-        {
-            return  Convert.ToInt64(Math.Pow(min,smin) * Math.Pow(max, smax));
-        }
-        public string getCalculatedResult(string input)
+
+        public string GetCalculatedResult(string input)
         {
             if (CheckInput(input) == false)
             {
                 return "Incorrect input.";
             }
-            if (a < b)
+            if (_a < _b)
             {
-                setMaxAndMin(a, b);
+                SetMaxAndMin(_a, _b);
             }
             else
             {
-                setMaxAndMin(b, a);
+                SetMaxAndMin(_b, _a);
             }
-                while (true)
+            while (true)
+            {
+                if (_o == 0)
                 {
-                    if (o == 0)
+                    return CalculateResult().ToString();
+                }
+                else
+                {
+                    if (_smin == 0)
                     {
-                        return calculateResult().ToString();
+                        return "0";
                     }
                     else
                     {
-                        if (smin == 0)
+                        _o += _min;
+                        _smin--;
+                        if (_o % _max == 0)
                         {
-                            return "0";
-                        }
-                        else
-                        {
-                            o += min;
-                            smin--;
-                            if (o % max == 0)
-                            {
-                                smax = o / max;
-                                o = 0;
-                            }
+                            _smax = _o / _max;
+                            _o = 0;
                         }
                     }
                 }
             }
         }
+
+        private void SetMaxAndMin(int x1, int x2)
+        {
+            _smin = _n / x1;
+            _o = _n % x1;
+            _min = x1;
+            _max = x2;
+        }
+
+        private long CalculateResult()
+        {
+            return Convert.ToInt64(Math.Pow(_min, _smin) * Math.Pow(_max, _smax));
+        }
     }
+}

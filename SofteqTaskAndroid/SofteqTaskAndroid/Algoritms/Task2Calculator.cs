@@ -1,43 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
+
 /*
 * Created by LiseGit at 31.12.2020.
 * 
 * */
+
 namespace SofteqTaskAndroid.Algoritms
 {
-    class Task2Calculator
+    class Task2Calculator : ITaskCalculator
     {
-        private int w, t;
-        private List<int> runOut = new List<int>();
-
-        bool CheckInput(string input)
-        {
-            string pattern = @"^(\s*(4|6|8|10)\s+([4-9]|1[0-9]|20)\s*\n+)"
+        private const string Pattern = @"^(\s*(4|6|8|10)\s+([4-9]|1[0-9]|20)\s*\n+)"
                 + @"((\s*(([1-9](\d){0,2})|([1-2](\d){3})|3000)\s*\n+))+"
                 + @"(\s*(([1-9](\d){0,2})|([1-2](\d){3})|3000)\s*\n*)\s*";
-            if (Regex.IsMatch(input, pattern))
+
+        private int _w;
+        private int _t;
+        private List<int> _runOut = new List<int>();
+
+        public bool CheckInput(string input)
+        {
+            if (Regex.IsMatch(input, Pattern))
             {
-                string[] words = input.Split(new char[] { ' ', '\n'}, StringSplitOptions.RemoveEmptyEntries);
-                w = Convert.ToInt16(words[0]);
-                t = Convert.ToInt16(words[1]);
-                if (t < w)
+                string[] words = input.Split(new char[] { ' ', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+                _w = Convert.ToInt16(words[0]);
+                _t = Convert.ToInt16(words[1]);
+                if (_t < _w)
                 {
                     return false;
                 }
                 else
                 {
-                    if(words.Length-2 != w)
+                    if (words.Length - 2 != _w)
                     {
                         return false;
                     }
                     else
                     {
-                        for(int i=2; i<words.Length; i++)
+                        for (int i = 2; i < words.Length; i++)
                         {
-                            runOut.Add(Convert.ToInt16(words[i]));
+                            _runOut.Add(Convert.ToInt16(words[i]));
                         }
                         return true;
                     }
@@ -48,25 +51,20 @@ namespace SofteqTaskAndroid.Algoritms
                 return false;
             }
         }
-        double calculateResult()
+
+        public string GetCalculatedResult(string input)
         {
-            double result=0;
-            foreach (int run in runOut)
-            {
-                result += (double) 1 / run;
-            }
-            return Math.Round(t / result, 3);
+            return CheckInput(input) ? CalculateResult().ToString() : "Incorrect input.";
         }
-        public string getCalculatedResult(string input)
+
+        private double CalculateResult()
         {
-            if (CheckInput(input) == false)
+            double result = 0;
+            foreach (int run in _runOut)
             {
-                return "Incorrect input.";
+                result += (double)1 / run;
             }
-            else
-            {
-                return calculateResult().ToString();
-            }
+            return Math.Round(_t / result, 3);
         }
     }
 }

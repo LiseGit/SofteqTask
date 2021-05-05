@@ -1,6 +1,5 @@
-﻿using System;
+﻿using SofteqTaskAndroid.IocContainer;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace SofteqTaskAndroid
 {
@@ -8,22 +7,19 @@ namespace SofteqTaskAndroid
     {
         public App()
         {
+            var builder = new IocContainerBuilder();
+            builder.RegisterDependencies();
+
             InitializeComponent();
+
             var navContainer = new MenuNavigationContainer("MenuContainer");
             MainPage = navContainer;
-            //MainPage = new MainPage();
         }
 
-        protected override void OnStart()
-        {
-        }
+        protected override void OnStart() { }
 
-        protected override void OnSleep()
-        {
-        }
+        protected override void OnSleep() { }
 
-        protected override void OnResume()
-        {
-        }
+        protected override void OnResume() { }
     }
 }

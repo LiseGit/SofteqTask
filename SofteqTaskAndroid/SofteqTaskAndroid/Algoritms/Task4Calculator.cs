@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.RegularExpressions;
 /*
 * Created by LiseGit at 31.12.2020.
@@ -8,17 +6,19 @@ using System.Text.RegularExpressions;
 * */
 namespace SofteqTaskAndroid.Algoritms
 {
-    class Task4Calculator
+    class Task4Calculator:ITaskCalculator
     {
-        private int a, b;
-        private bool CheckInput(string input)
+        private const string Pattern = @"^\s*([1-9]\d{0,2}|1000)\s+([1-9]\d{0,2}|1000)\s*$";
+        private int _a;
+        private int _b;
+
+        public bool CheckInput(string input)
         {
-            string pattern = @"^\s*([1-9]\d{0,2}|1000)\s+([1-9]\d{0,2}|1000)\s*$";
-            if (Regex.IsMatch(input, pattern))
+            if (Regex.IsMatch(input, Pattern))
             {
-                String[] words = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                a = Convert.ToInt16(words[0]);
-                b = Convert.ToInt16(words[1]);
+                string[] words = input.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                _a = Convert.ToInt16(words[0]);
+                _b = Convert.ToInt16(words[1]);
                 return true;
             }
             else
@@ -26,20 +26,15 @@ namespace SofteqTaskAndroid.Algoritms
                 return false;
             }
         }
-        int calculateResult()
+
+        public string GetCalculatedResult(string input)
         {
-            return a * b + a + b;
+            return CheckInput(input)? CalculateResult().ToString(): "Incorrect input.";
         }
-        public string getCalculatedResult(string input)
+
+        private int CalculateResult()
         {
-            if (CheckInput(input) == false)
-            {
-                return "Incorrect input.";
-            }
-            else
-            {
-                return calculateResult().ToString();
-            }
+            return _a * _b + _a + _b;
         }
     }
 }
